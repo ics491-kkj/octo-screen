@@ -1,19 +1,17 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, SelectField, SubmitField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { Status } from '../../api/status/Status';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  name: String,
-  quantity: Number,
   condition: {
     type: String,
-    allowedValues: ['excellent', 'good', 'fair', 'poor'],
+    allowedValues: ['good', 'bad'],
     defaultValue: 'good',
   },
 });
@@ -25,9 +23,11 @@ class UpdateStatus extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { name, quantity, condition } = data;
+    const { condition } = data;
+    const name = Meteor.user().username;
     const owner = Meteor.user().username;
-    Stuffs.collection.insert({ name, quantity, condition, owner },
+    const date = Date();
+    Status.collection.insert({ name, condition, date, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -61,8 +61,6 @@ class UpdateStatus extends React.Component {
                 <li>Skin rash</li>
                 <li>Chest pain or pressure</li>
               </ul>
-              <TextField name='name'/>
-              <NumField name='quantity' decimal={false}/>
               <SelectField name='condition'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
