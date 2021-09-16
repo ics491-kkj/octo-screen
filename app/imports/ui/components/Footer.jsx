@@ -7,7 +7,6 @@ class Footer extends React.Component {
     return (
       <footer>
         <div style={divStyle} className="ui center aligned container">
-          <hr />
         </div>
       </footer>
     );
