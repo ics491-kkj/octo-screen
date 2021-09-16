@@ -18,8 +18,8 @@ class Landing extends React.Component {
             </Segment>
           ) : (
             <Segment>
-              <h1>Update your status.</h1>
-              <Button color='yellow' as={NavLink} exact to='/add'>Update</Button>
+              <h1>Daily Health Check in</h1>
+              <Button color='yellow' as={NavLink} exact to='/update'>Update Symptoms</Button>
             </Segment>
           )}
 

@@ -21,7 +21,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-class AddStuff extends React.Component {
+class UpdateStatus extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
@@ -44,9 +44,23 @@ class AddStuff extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center">Add Stuff</Header>
+          <Header as="h2" textAlign="center">How are you feeling?</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
+              <p>Do any of these symptoms apply to you?</p>
+              <ul>
+                <li>Fever greater than 100.4 °F or feeling feverish (chills, sweating)</li>
+                <li>Cough</li>
+                <li>Shortness of breath/difficulty breathing</li>
+                <li>Sore throat</li>
+                <li>Unexplained muscle/body aches</li>
+                <li>Nausea/vomiting or diarrhea</li>
+                <li>Loss of senses of taste or smell</li>
+                <li>Runny or congested nose</li>
+                <li>Headache</li>
+                <li>Skin rash</li>
+                <li>Chest pain or pressure</li>
+              </ul>
               <TextField name='name'/>
               <NumField name='quantity' decimal={false}/>
               <SelectField name='condition'/>
@@ -60,4 +74,4 @@ class AddStuff extends React.Component {
   }
 }
 
-export default AddStuff;
+export default UpdateStatus;
