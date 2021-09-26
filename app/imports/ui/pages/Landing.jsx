@@ -17,11 +17,18 @@ class Landing extends React.Component {
               <Button as={NavLink} exact to='/signup'> Register </Button>
             </Segment>
           ) : (
-            <Segment>
-              <h1>Health Check-in</h1>
-              <Button primary as={NavLink} exact to='/update'>Update Symptoms</Button>
-              <Button secondary as={NavLink} exact to='/list'>Previous Check-ins</Button>
-            </Segment>
+            <div>
+                <Segment>
+                  <h1>Health Check-in</h1>
+                  <Button primary as={NavLink} exact to='/update'>Update Symptoms</Button>
+                  <Button secondary as={NavLink} exact to='/list'>Previous Check-ins</Button>
+                </Segment>
+                <Segment>
+                  <h1>Vaccine Form</h1>
+                  <Button primary as={NavLink} exact to='/update'>Create New Form</Button>
+                  <Button secondary as={NavLink} exact to='/list'>View Form</Button>
+                </Segment>
+            </div>
           )}
 
         </Grid.Column>
