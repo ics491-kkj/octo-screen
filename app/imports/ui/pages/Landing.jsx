@@ -25,7 +25,7 @@ class Landing extends React.Component {
                 </Segment>
                 <Segment>
                   <h1>Vaccine Form</h1>
-                  <Button primary as={NavLink} exact to='/update'>Create New Form</Button>
+                  <Button primary as={NavLink} exact to='/add_vf'>Create Form</Button>
                   <Button secondary as={NavLink} exact to='/list'>View Form</Button>
                 </Segment>
             </div>

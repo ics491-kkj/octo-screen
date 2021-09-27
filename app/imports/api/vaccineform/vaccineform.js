@@ -2,22 +2,47 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
-/** Create a Meteor collection. */
-const VaccineForms = new Mongo.Collection('VaccineForms');
+/**
+ * The VaccineFormsCollection. It encapsulates state and variable values for VaccineForms.
+ */
+class VaccineFormsCollection {
+  constructor() {
+    // The name of this collection.
+    this.name = 'VaccineFormsCollection';
+    // Define the Mongo collection.
+    this.collection = new Mongo.Collection(this.name);
+    // Define the structure of each document in the collection.
+    this.schema = new SimpleSchema({
+      lastname: String,
+      firstname: String,
+      middlein: String,
+      dob: String,
+      pnum: String,
+      
+      vname1: String,
+      lotnum1: String,
+      date1: String,
+      site1: String,
+      
+      vname2: String,
+      lotnum2: String,
+      date2: String,
+      site2: String,
+      
+      image: String,
+                                   
+      owner: String,
+    },{ requiredByDefault: false }, { tracker: Tracker });
+    // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
+    this.collection.attachSchema(this.schema);
+    // Define names for publications and subscriptions
+    this.userPublicationName = `${this.name}.publication.user`;
+    this.adminPublicationName = `${this.name}.publication.admin`;
+  }
+}
 
-/** Create a schema to constrain the structure of documents associated with this collection. */
-const VaccineFormSchema = new SimpleSchema({
-  lastname: String,
-  firstname: String,
-  dob: String,
-  pnum: String,
-  vname: String,
-  lotnum: String,
-  owner: String,
-}, { tracker: Tracker });
-
-/** Attach this schema to the collection. */
-VaccineForms.attachSchema(VaccineFormSchema);
-
-/** Make the collection and schema available to other code. */
-export { VaccineForms, VaccineFormSchema };
+/**
+ * The singleton instance of the VaccineFormsCollection.
+ * @type {VaccineFormsCollection}
+ */
+export const VaccineForms = new VaccineFormsCollection();
