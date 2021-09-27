@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Button, Header, Table, Container, Loader } from 'semantic-ui-react';
+import { Grid, Segment, Button, Header, Table, Loader } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -20,31 +20,29 @@ class Home extends React.Component {
     return (
       <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
         <Grid.Column width={8}>
-          <h1>Health Check-in</h1>
+          <Header as="h2" textAlign="center">Health Check-in</Header>
           <Segment>
             <p>Keep track of your symptoms daily.</p>
             <Button as={NavLink} exact to='/update'>Update Symptoms</Button>
           </Segment>
-          <h1>Vaccination card</h1>
+          <Header as="h2" textAlign="center">Vaccination card</Header>
           <Segment>
             <p>No Vaccination card information submitted yet.</p>
             <p>Placeholder text.</p>
             <Button>Submit Information</Button>
           </Segment>
-          <Container>
-            <Header as="h2" textAlign="center">Previous Check-ins</Header>
-            <Table celled>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Date</Table.HeaderCell>
-                  <Table.HeaderCell>Condition</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {this.props.status.map((status) => <StatusItem key={status._id} status={status} />)}
-              </Table.Body>
-            </Table>
-          </Container>
+          <Header as="h2" textAlign="center">Previous Check-ins</Header>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell>Condition</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {this.props.status.slice(-3).reverse().map((status) => <StatusItem key={status._id} status={status} />)}
+            </Table.Body>
+          </Table>
         </Grid.Column>
       </Grid>
     );
