@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Button, Header, Table, Container } from 'semantic-ui-react';
+import { Grid, Segment, Button, Header, Table, Container, Loader } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -9,13 +9,27 @@ import StatusItem from '../components/StatusItem';
 
 /** A simple static component to render some text for the home page. */
 class Home extends React.Component {
+
+  // If the subscription has been received, then render the page. Otherwise, let them know it's loading
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  // Render the page when the subscription is ready
+  renderPage() {
     return (
       <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
         <Grid.Column width={8}>
+          <h1>Health Check-in</h1>
           <Segment>
-            <h1>Health Check-in</h1>
-            <Button primary as={NavLink} exact to='/update'>Update Symptoms</Button>
+            <p>Keep track of your symptoms daily.</p>
+            <Button as={NavLink} exact to='/update'>Update Symptoms</Button>
+          </Segment>
+          <h1>Vaccination card</h1>
+          <Segment>
+            <p>No Vaccination card information submitted yet.</p>
+            <p>Placeholder text.</p>
+            <Button>Submit Information</Button>
           </Segment>
           <Container>
             <Header as="h2" textAlign="center">Previous Check-ins</Header>
