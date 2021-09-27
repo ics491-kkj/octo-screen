@@ -1,0 +1,17 @@
+/*GLOBAL CSS SECTION*/
+/* ~~~~~~START~~~~~~~ */
+
+#background-image {
+  background: url("/images/octoscreen-background.png");
+  height: 900px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ~~~~~~END~~~~~~~ */
+/*GLOBAL CSS SECTION*/
+
+/*LANDING SECTION*/
+/* ~~~~~~START~~~~~~~ */
+
