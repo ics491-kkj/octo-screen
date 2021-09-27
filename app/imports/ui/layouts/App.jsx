@@ -17,6 +17,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import UpdateStatus from '../pages/UpdateStatus';
 import AddVaccineForm from '../pages/AddVaccineForm';
+import ListVaccineForm from '../pages/ListVaccineForm';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
             <ProtectedRoute path="/update" component={UpdateStatus}/>
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/add_vf" component={AddVaccineForm}/>
+            <ProtectedRoute path="/list_vf" component={ListVaccineForm}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <Route component={NotFound}/>
