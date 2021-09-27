@@ -13,7 +13,7 @@ class Landing extends React.Component {
     };
     return (
       <div id="background-image">
-        <Container id="landing-page">
+        <Container>
           <Grid stackable verticalAlign='middle' textAlign='center' container>
             <Grid.Column width={8}>
               {Meteor.userId() == null ? (
