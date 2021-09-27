@@ -17,8 +17,8 @@ class Landing extends React.Component {
           <Grid stackable verticalAlign='middle' textAlign='center' container>
             <Grid.Column width={8}>
               {Meteor.userId() == null ? (
-                <Segment style={segmentStyle} id="landing-segment">
-                  <h1>Welcome to Octo Screen!</h1>
+                <Segment style={segmentStyle}>
+                  <h1 style="padding-bottom: 20px">Welcome to Octo Screen!</h1>
                   <Button className="ui color button" primary as={NavLink} exact to='/signin'> Sign in </Button>
                   <Button as={NavLink} secondary exact to='/signup'> Register </Button>
                 </Segment>

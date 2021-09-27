@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Grid, Table, Header, Loader, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Status } from '../../api/status/Status';
@@ -16,22 +16,31 @@ class ListStatus extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const segmentStyle = {
+      margin: '50px 30px',
+      borderRadius: '15px',
+      padding: '20px 20px',
+    };
     return (
-      <Container>
-        <Header as="h2" textAlign="center">Previous Check-ins</Header>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Condition</Table.HeaderCell>
-              <Table.HeaderCell>Date</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {this.props.status.map((status) => <StatusItem key={status._id} status={status} />)}
-          </Table.Body>
-        </Table>
-      </Container>
+      <div id="background-image">
+        <Grid container centered>
+          <Segment style={segmentStyle}>
+            <Header as="h2" textAlign="center">Previous Check-ins</Header>
+            <Table celled>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Name</Table.HeaderCell>
+                  <Table.HeaderCell>Condition</Table.HeaderCell>
+                  <Table.HeaderCell>Date</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {this.props.status.map((status) => <StatusItem key={status._id} status={status}/>)}
+              </Table.Body>
+            </Table>
+          </Segment>
+        </Grid>
+      </div>
     );
   }
 }
