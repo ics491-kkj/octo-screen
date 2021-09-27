@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Button, Icon, Container, Card } from 'semantic-ui-react';
+import { Grid, Segment, Button, Container, List, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
@@ -9,24 +9,42 @@ class Landing extends React.Component {
     const segmentStyle = {
       marginTop: '70px',
       borderRadius: '15px',
+      padding: '20px 20px',
     };
     return (
       <div id="background-image">
-        <Container>
-          <Grid verticalAlign='middle' textAlign='center' container>
+        <Container id="landing-page">
+          <Grid stackable verticalAlign='middle' textAlign='center' container>
             <Grid.Column width={8}>
               {Meteor.userId() == null ? (
-                <Card style={segmentStyle}>
+                <Segment style={segmentStyle} id="landing-segment">
                   <h1>Welcome to Octo Screen!</h1>
-                  <Button as={NavLink} exact to='/signin'> Sign in </Button>
-                  <Button as={NavLink} exact to='/signup'> Register </Button>
-                </Card>
+                  <Button className="ui color button" primary as={NavLink} exact to='/signin'> Sign in </Button>
+                  <Button as={NavLink} secondary exact to='/signup'> Register </Button>
+                </Segment>
               ) : (
-                <Card style={segmentStyle}>
-                  <h1>Health Check-in</h1>
-                  <Button primary as={NavLink} exact to='/update'>Update Symptoms</Button>
-                  <Button secondary as={NavLink} exact to='/list'>Previous Check-ins</Button>
-                </Card>
+                <Segment style={segmentStyle} id="landing-segment">
+                  <div align="left">
+                    <h3>Daily Health Check-In</h3>
+                    <p>Help keep our campus safe by completing your daily health check-in!</p>
+                    <List ordered>
+                      <List.Item>
+                        Check your symptoms.
+                      </List.Item>
+                      <List.Item>
+                        Keep track of your symptoms every day.
+                      </List.Item>
+                    </List>
+                    <Button className="ui color button" primary as={NavLink} icon labelPosition='left' exact to='/update'>
+                      <Icon name="heart outline"/>
+                      Check Your Symptoms
+                    </Button>
+                    <Button secondary as={NavLink} icon labelPosition='left' exact to='/list'>
+                      <Icon name="clipboard list"/>
+                      Previous Check-ins
+                    </Button>
+                  </div>
+                </Segment>
               )}
             </Grid.Column>
           </Grid>

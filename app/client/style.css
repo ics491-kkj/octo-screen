@@ -3,15 +3,33 @@
 
 #background-image {
   background: url("/images/octoscreen-background.png");
-  height: 900px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.ui.color.button {
+  background-color: #5c5ca0 !important;
+  color: #fff;
 }
 
 /* ~~~~~~END~~~~~~~ */
 /*GLOBAL CSS SECTION*/
 
+
+
 /*LANDING SECTION*/
 /* ~~~~~~START~~~~~~~ */
 
+#landing-page {
+  margin: 5em 5em;
+}
+
+#landing-segment {
+  border-radius: 15px !important;
+}
+
+/* ~~~~~~END~~~~~~~ */
+/*LANDING SECTION*/
