@@ -6,38 +6,18 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { VaccineForms } from '../../api/vaccineform/Vaccineform';
+import {VaccineFormInfoSchema} from '../forms/VaccineFormInfo'
 
-// Create a schema to specify the structure of the data to appear in the form.
-const formSchema = new SimpleSchema({
-  lastname: String,
-  firstname: String,
-  middlein: String,
-  dob: String,
-  pnum: String,
-  
-  vname1: String,
-  lotnum1: String,
-  date1: String,
-  site1: String,
-  
-  vname2: String,
-  lotnum2: String,
-  date2: String,
-  site2: String,
-  
-  image: String,
-}, { requiredByDefault: false });
-
-const bridge = new SimpleSchema2Bridge(formSchema);
+const bridge = new SimpleSchema2Bridge(VaccineFormInfoSchema);
 
 /** Renders the Page for adding a document. */
 class AddVaccineForm extends React.Component {
 
   // On submit, insert the data.
   submit(data, formRef) {
-    const { lastname, firstname, dob, pnum, vname1, lotnum1, date1, site1, vname2, lotnum2, date2, site2, image } = data;
+    const { lastname, firstname, middlein, dob, pnum, vname1, lotnum1, date1, site1, vname2, lotnum2, date2, site2, image } = data;
     const owner = Meteor.user().username;
-    VaccineForms.collection.insert({ lastname, firstname, dob, pnum, vname1, lotnum1, date1, site1, vname2, lotnum2, date2, site2, image, owner },
+    VaccineForms.collection.insert({ lastname, firstname, middlein, dob, pnum, vname1, lotnum1, date1, site1, vname2, lotnum2, date2, site2, image, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -57,24 +37,24 @@ class AddVaccineForm extends React.Component {
           <Header as="h2" textAlign="center">Add Vaccine Form</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
             <Segment>
-              <TextField name='lastname' placeholder='Last Name'/>
-              <TextField name='firstname' placeholder='First Name'/>
-              <TextField name='middlein' placeholder='Middle Initial'/>
-              <TextField name='dob' placeholder='Date of Birth (MM/DD/YYYY)'/>
-              <NumField name='pnum' placeholder='Patient Number (Optional)'/>
+              <TextField name='lastname' showInlineError={true} placeholder='e.g. Doe'/>
+              <TextField name='firstname' placeholder='e.g. John'/>
+              <TextField name='middlein' placeholder='e.g. B'/>
+              <TextField name='dob' placeholder='e.g. 09/27/2021'/>
+              <TextField name='pnum' placeholder='e.g. 18482910'/>
               
               <Header as="h3" textAlign="left">First Dose</Header>
-              <TextField name='vname1' placeholder='Vaccine Name'/>
-              <TextField name='lotnum1' placeholder='Lot Number'/>
-              <TextField name='date1' placeholder='Date Administered (MM/DD/YYYY)'/>
-              <TextField name='site1' placeholder='Healthcare Professional or Clinic Site'/>
+              <TextField name='vname1' placeholder='e.g. Pfizer'/>
+              <TextField name='lotnum1' placeholder='e.g. EH9899'/>
+              <TextField name='date1' placeholder='e.g. 12/14/2020'/>
+              <TextField name='site1' placeholder='e.g. Kaiser Permanente Los Angeles'/>
               
               <Header as="h3" textAlign="left">Second Dose</Header>
-              <TextField name='vname2' placeholder='Vaccine Name'/>
-              <TextField name='lotnum2' placeholder='Lot Number'/>
-              <TextField name='date2' placeholder='Date Administered (MM/DD/YYYY)'/>
-              <TextField name='site2' placeholder='Healthcare Professional or Clinic Site'/>
-              <TextField name='image' placeholder='Image of COVID-19 Vaccination Record Card'/>
+              <TextField name='vname2' placeholder='e.g. Pfizer'/>
+              <TextField name='lotnum2' placeholder='e.g. EH9681'/>
+              <TextField name='date2' placeholder='e.g. 01/07/2021'/>
+              <TextField name='site2' placeholder='e.g. Kaiser Permanente Los Angeles'/>
+              <TextField name='image' placeholder='e.g. https://www.bu.edu/files/2021/04/leadin-AP_20353529266022.jpg'/>
  
               <SubmitField value='Submit'/>
               <ErrorsField/>

@@ -15,9 +15,9 @@ class VaccineFormsCollection {
     this.schema = new SimpleSchema({
       lastname: String,
       firstname: String,
-      middlein: String,
+      middlein: { type: String, optional: true },
       dob: String,
-      pnum: String,
+      pnum: { type: String, optional: true },
       
       vname1: String,
       lotnum1: String,
@@ -28,11 +28,9 @@ class VaccineFormsCollection {
       lotnum2: String,
       date2: String,
       site2: String,
-      
-      image: String,
-                                   
+      image: { type: String, optional: true },
       owner: String,
-    },{ requiredByDefault: false }, { tracker: Tracker });
+    }, { tracker: Tracker });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
