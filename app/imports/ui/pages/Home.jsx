@@ -29,7 +29,8 @@ class Home extends React.Component {
           <Segment>
             <p>No Vaccination card information submitted yet.</p>
             <p>Placeholder text.</p>
-            <Button>Submit Information</Button>
+            <Button as={NavLink} exact to='/add_vf'>Submit Information</Button>
+            <Button as={NavLink} exact to='/list_vf'>View Information</Button>
           </Segment>
           <Header as="h2" textAlign="center">Previous Check-ins</Header>
           <Table celled>
