@@ -22,9 +22,8 @@ class ListStatus extends React.Component {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Condition</Table.HeaderCell>
               <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell>Condition</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

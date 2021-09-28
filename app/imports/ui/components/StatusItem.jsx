@@ -8,9 +8,8 @@ class StatusItem extends React.Component {
   render() {
     return (
       <Table.Row>
-        <Table.Cell>{this.props.status.name}</Table.Cell>
-        <Table.Cell>{this.props.status.condition}</Table.Cell>
         <Table.Cell>{this.props.status.date.toString()}</Table.Cell>
+        <Table.Cell>{this.props.status.condition}</Table.Cell>
       </Table.Row>
     );
   }

@@ -2,37 +2,25 @@ import React from 'react';
 import { Grid, Segment, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { Redirect } from 'react-router';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
+
+    if (Meteor.userId() != null) {
+      return <Redirect to='/home'/>;
+    }
+
     return (
       <Grid id='landing-page' verticalAlign='middle' textAlign='center' container>
-
         <Grid.Column width={8}>
-          {Meteor.userId() == null ? (
-            <Segment>
-              <h1>Welcome to Octo Screen!</h1>
-              <Button color='green' as={NavLink} exact to='/signin'> Sign in </Button>
-              <Button as={NavLink} exact to='/signup'> Register </Button>
-            </Segment>
-          ) : (
-            <div>
-                <Segment>
-                  <h1>Health Check-in</h1>
-                  <Button primary as={NavLink} exact to='/update'>Update Symptoms</Button>
-                  <Button secondary as={NavLink} exact to='/list'>Previous Check-ins</Button>
-                </Segment>
-                <Segment>
-                  <h1>Vaccine Form</h1>
-                  <Button primary as={NavLink} exact to='/add_vf'>Create Form</Button>
-                  <Button secondary as={NavLink} exact to='/list_vf'>View Form</Button>
-                </Segment>
-            </div>
-          )}
-
+          <Segment>
+            <h1>Welcome to Octo Screen!</h1>
+            <Button color='green' as={NavLink} exact to='/signin'> Sign in </Button>
+            <Button as={NavLink} exact to='/signup'> Register </Button>
+          </Segment>
         </Grid.Column>
-
       </Grid>
     );
   }
