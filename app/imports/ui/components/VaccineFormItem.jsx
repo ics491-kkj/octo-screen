@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -7,22 +7,41 @@ import { withRouter, Link } from 'react-router-dom';
 class VaccineFormItem extends React.Component {
   render() {
     return (
-      <Table.Row>
-        <Table.Cell>{this.props.vaccineform.lastname}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.firstname}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.middlein}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.dob}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.pnum}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.vname1}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.lotnum1}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.date1}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.site1}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.vname2}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.lotnum2}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.date2}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.site2}</Table.Cell>
-        <Table.Cell>{this.props.vaccineform.image}</Table.Cell>
-      </Table.Row>
+      <Card centered>
+        <Card.Content>
+            <Card.Header> Vaccine Form </Card.Header>
+            <Card.Description>Last Name</Card.Description>
+            <Card.Meta>{this.props.vaccineform.lastname}</Card.Meta>
+            <Card.Description>First Name</Card.Description>
+            <Card.Meta>{this.props.vaccineform.firstname}</Card.Meta>
+            <Card.Description>MI</Card.Description>
+            <Card.Meta>{this.props.vaccineform.middlein}</Card.Meta>
+            <Card.Description>Date of Birth</Card.Description>
+            <Card.Meta>{this.props.vaccineform.dob}</Card.Meta>
+            <Card.Description>Patient Number</Card.Description>
+            <Card.Meta>{this.props.vaccineform.pnum}</Card.Meta>
+            
+            <Card.Description>(1)Vaccine Name</Card.Description>
+            <Card.Meta>{this.props.vaccineform.vname1}</Card.Meta>
+            <Card.Description>(1)Lot Number</Card.Description>
+            <Card.Meta>{this.props.vaccineform.lotnum1}</Card.Meta>
+            <Card.Description>(1)Date</Card.Description>
+            <Card.Meta>{this.props.vaccineform.date1}</Card.Meta>
+            <Card.Description>(1)Site</Card.Description>
+            <Card.Meta>{this.props.vaccineform.site1}</Card.Meta>
+            
+            <Card.Description>(2)Vaccine Name</Card.Description>
+            <Card.Meta>{this.props.vaccineform.vname2}</Card.Meta>
+            <Card.Description>(2)Lot Number</Card.Description>
+            <Card.Meta>{this.props.vaccineform.lotnum2}</Card.Meta>
+            <Card.Description>(2)Date</Card.Description>
+            <Card.Meta>{this.props.vaccineform.date2}</Card.Meta>
+            <Card.Description>(2)Site</Card.Description>
+            <Card.Meta>{this.props.vaccineform.site2}</Card.Meta>
+            <Card.Description>Image</Card.Description>
+            <Image src={this.props.vaccineform.image}/>
+        </Card.Content>
+      </Card>
     );
   }
 }
