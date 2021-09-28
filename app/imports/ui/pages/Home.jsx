@@ -1,12 +1,13 @@
 import React from 'react';
-import { Grid, Segment, Button, Header, Table, Loader } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Grid, Header, Loader } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Status } from '../../api/status/Status';
-import StatusItem from '../components/StatusItem';
 import StatusCard from '../components/StatusCard';
+import CheckInSegment from '../components/CheckInSegment';
+import VaccCardSegment from '../components/VaccCardSegment';
+import PreviousCheckIns from '../components/PreviousCheckIns';
 
 /** A simple static component to render some text for the home page. */
 class Home extends React.Component {
@@ -21,30 +22,13 @@ class Home extends React.Component {
     return (
       <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
         <Grid.Column width={8}>
-          <StatusCard/>
+          <StatusCard />
           <Header as="h2" textAlign="center">Health Check-in</Header>
-          <Segment>
-            <p>Keep track of your symptoms daily.</p>
-            <Button as={NavLink} exact to='/update'>Update Symptoms</Button>
-          </Segment>
+          <CheckInSegment />
           <Header as="h2" textAlign="center">Vaccination card</Header>
-          <Segment>
-            <p>No Vaccination card information submitted yet.</p>
-            <p>Placeholder text.</p>
-            <Button>Submit Information</Button>
-          </Segment>
+          <VaccCardSegment />
           <Header as="h2" textAlign="center">Previous Check-ins</Header>
-          <Table celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Condition</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {this.props.status.slice(-3).reverse().map((status) => <StatusItem key={status._id} status={status} />)}
-            </Table.Body>
-          </Table>
+          <PreviousCheckIns status={this.props.status} />
         </Grid.Column>
       </Grid>
     );
