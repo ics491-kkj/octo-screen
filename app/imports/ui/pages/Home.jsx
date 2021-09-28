@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Status } from '../../api/status/Status';
 import StatusItem from '../components/StatusItem';
+import StatusCard from '../components/StatusCard';
 
 /** A simple static component to render some text for the home page. */
 class Home extends React.Component {
@@ -20,6 +21,7 @@ class Home extends React.Component {
     return (
       <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
         <Grid.Column width={8}>
+          <StatusCard/>
           <Header as="h2" textAlign="center">Health Check-in</Header>
           <Segment>
             <p>Keep track of your symptoms daily.</p>
