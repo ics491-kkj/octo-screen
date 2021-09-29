@@ -41,6 +41,9 @@ class VaccineFormItem extends React.Component {
             <Card.Description>Image</Card.Description>
             <Image src={this.props.vaccineform.image}/>
         </Card.Content>
+        <Card.Content extra>
+          <Link to={`/edit_vf/${this.props.vaccineform._id}`}>Edit</Link>
+        </Card.Content>
       </Card>
     );
   }

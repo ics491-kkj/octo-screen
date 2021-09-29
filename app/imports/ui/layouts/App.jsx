@@ -18,6 +18,7 @@ import Signout from '../pages/Signout';
 import UpdateStatus from '../pages/UpdateStatus';
 import AddVaccineForm from '../pages/AddVaccineForm';
 import ListVaccineForm from '../pages/ListVaccineForm';
+import EditVaccineForm from '../pages/EditVaccineForm';
 import Home from '../pages/Home';
 
 
@@ -39,6 +40,7 @@ class App extends React.Component {
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/add_vf" component={AddVaccineForm}/>
             <ProtectedRoute path="/list_vf" component={ListVaccineForm}/>
+            <ProtectedRoute path="/edit_vf/:_id" component={EditVaccineForm}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
             <Route component={NotFound}/>
