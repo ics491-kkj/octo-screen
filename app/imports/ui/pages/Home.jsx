@@ -58,7 +58,7 @@ class Home extends React.Component {
                 <h4>No Vaccination card information submitted yet.</h4>
                 <p>Placeholder text.</p>
               </div>
-              <Button className="ui color button" as={NavLink} icon labelPosition='left ' exact to='/add_vf'>
+              <Button className="ui color button" primary as={NavLink} icon labelPosition='left ' exact to='/add_vf'>
                 <Icon name="address card outline"/>
                 Submit Information
               </Button>
