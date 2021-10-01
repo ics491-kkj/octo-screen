@@ -31,37 +31,46 @@ class AddVaccineForm extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
     let fRef = null;
+    const headerStyle = {
+      color: 'white',
+      padding: '40px 0 10px 0',
+    };
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Add Vaccine Form</Header>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
-            <Segment>
-              <TextField name='lastname' showInlineError={true} placeholder='e.g. Doe'/>
-              <TextField name='firstname' placeholder='e.g. John'/>
-              <TextField name='middlein' placeholder='e.g. B'/>
-              <TextField name='dob' placeholder='e.g. 09/27/2021'/>
-              <TextField name='pnum' placeholder='e.g. 18482910'/>
-              
-              <Header as="h3" textAlign="left">First Dose</Header>
-              <TextField name='vname1' placeholder='e.g. Pfizer'/>
-              <TextField name='lotnum1' placeholder='e.g. EH9899'/>
-              <TextField name='date1' placeholder='e.g. 12/14/2020'/>
-              <TextField name='site1' placeholder='e.g. Kaiser Permanente Los Angeles'/>
-              
-              <Header as="h3" textAlign="left">Second Dose</Header>
-              <TextField name='vname2' placeholder='e.g. Pfizer'/>
-              <TextField name='lotnum2' placeholder='e.g. EH9681'/>
-              <TextField name='date2' placeholder='e.g. 01/07/2021'/>
-              <TextField name='site2' placeholder='e.g. Kaiser Permanente Los Angeles'/>
-              <TextField name='image' placeholder='e.g. https://www.bu.edu/files/2021/04/leadin-AP_20353529266022.jpg'/>
- 
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+      <div id='background-image'>
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center" style={headerStyle}>Add Vaccine Form</Header>
+            <AutoForm ref={ref => {
+              fRef = ref;
+            }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
+              <Segment>
+                <TextField name='lastname' showInlineError={true} placeholder='e.g. Doe'/>
+                <TextField name='firstname' placeholder='e.g. John'/>
+                <TextField name='middlein' placeholder='e.g. B'/>
+                <TextField name='dob' placeholder='e.g. 09/27/2021'/>
+                <TextField name='pnum' placeholder='e.g. 18482910'/>
+
+                <Header as="h3" textAlign="left">First Dose</Header>
+                <TextField name='vname1' placeholder='e.g. Pfizer'/>
+                <TextField name='lotnum1' placeholder='e.g. EH9899'/>
+                <TextField name='date1' placeholder='e.g. 12/14/2020'/>
+                <TextField name='site1' placeholder='e.g. Kaiser Permanente Los Angeles'/>
+
+                <Header as="h3" textAlign="left">Second Dose</Header>
+                <TextField name='vname2' placeholder='e.g. Pfizer'/>
+                <TextField name='lotnum2' placeholder='e.g. EH9681'/>
+                <TextField name='date2' placeholder='e.g. 01/07/2021'/>
+                <TextField name='site2' placeholder='e.g. Kaiser Permanente Los Angeles'/>
+                <TextField name='image'
+                  placeholder='e.g. https://www.bu.edu/files/2021/04/leadin-AP_20353529266022.jpg'/>
+
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

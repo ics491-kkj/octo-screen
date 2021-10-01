@@ -18,16 +18,20 @@ class Home extends React.Component {
   // Render the page when the subscription is ready
   renderPage() {
     const segmentStyle = {
-      marginTop: '70px',
+      marginTop: '50px',
       borderRadius: '15px',
       padding: '20px 20px',
+    };
+    const textStyle = {
+      textAlign: 'left',
+      paddingBottom: '20px',
     };
     return (
       <div id='background-image'>
         <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
           <Grid.Column width={8}>
             <Segment style={segmentStyle} id="landing-segment">
-              <div align="left">
+              <div style={textStyle}>
                 <h3>Daily Health Check-In</h3>
                 <p>Help keep our campus safe by completing your daily health check-in!</p>
                 <List ordered>
@@ -38,24 +42,32 @@ class Home extends React.Component {
                     Keep track of your symptoms every day.
                   </List.Item>
                 </List>
-                <Button className="ui color button" primary as={NavLink} icon labelPosition='left' exact to='/update'>
-                  <Icon name="heart outline"/>
-                  Check Your Symptoms
-                </Button>
-                <Button secondary as={NavLink} icon labelPosition='left' exact to='/list'>
-                  <Icon name="clipboard list"/>
-                  Previous Check-ins
-                </Button>
               </div>
+              <Button className="ui color button" primary as={NavLink} icon labelPosition='left' exact to='/update'>
+                <Icon name="heart outline"/>
+                  Check Your Symptoms
+              </Button>
+              <Button secondary as={NavLink} icon labelPosition='left' exact to='/list'>
+                <Icon name="clipboard list"/>
+                  Previous Check-ins
+              </Button>
             </Segment>
-            <Header as="h2" textAlign="center">Vaccination card</Header>
-            <Segment>
-              <p>No Vaccination card information submitted yet.</p>
-              <p>Placeholder text.</p>
-              <Button as={NavLink} exact to='/add_vf'>Submit Information</Button>
-              <Button as={NavLink} exact to='/list_vf'>View Information</Button>
+            <Segment style={segmentStyle} id="landing-segment">
+              <div style={textStyle}>
+                <h3>Vaccination Card</h3>
+                <h4>No Vaccination card information submitted yet.</h4>
+                <p>Placeholder text.</p>
+              </div>
+              <Button className="ui color button" as={NavLink} icon labelPosition='left ' exact to='/add_vf'>
+                <Icon name="address card outline"/>
+                Submit Information
+              </Button>
+              <Button secondary as={NavLink} icon labelPosition='left' exact to='/list_vf'>
+                <Icon name="info circle"/>
+                View Information
+              </Button>
             </Segment>
-            <Header as="h2" textAlign="center">Previous Check-ins</Header>
+            <Header as="h2" textAlign="left" style={{ color: 'white' }}>Previous Check-ins</Header>
             <Table celled>
               <Table.Header>
                 <Table.Row>
