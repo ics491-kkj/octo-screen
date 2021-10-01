@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Button, Header, Table, Loader } from 'semantic-ui-react';
+import { Grid, Segment, Button, Header, Table, Loader, List, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -17,35 +17,59 @@ class Home extends React.Component {
 
   // Render the page when the subscription is ready
   renderPage() {
+    const segmentStyle = {
+      marginTop: '70px',
+      borderRadius: '15px',
+      padding: '20px 20px',
+    };
     return (
-      <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
-        <Grid.Column width={8}>
-          <Header as="h2" textAlign="center">Health Check-in</Header>
-          <Segment>
-            <p>Keep track of your symptoms daily.</p>
-            <Button as={NavLink} exact to='/update'>Update Symptoms</Button>
-          </Segment>
-          <Header as="h2" textAlign="center">Vaccination card</Header>
-          <Segment>
-            <p>No Vaccination card information submitted yet.</p>
-            <p>Placeholder text.</p>
-            <Button as={NavLink} exact to='/add_vf'>Submit Information</Button>
-            <Button as={NavLink} exact to='/list_vf'>View Information</Button>
-          </Segment>
-          <Header as="h2" textAlign="center">Previous Check-ins</Header>
-          <Table celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Condition</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {this.props.status.slice(-3).reverse().map((status) => <StatusItem key={status._id} status={status} />)}
-            </Table.Body>
-          </Table>
-        </Grid.Column>
-      </Grid>
+      <div id='background-image'>
+        <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
+          <Grid.Column width={8}>
+            <Segment style={segmentStyle} id="landing-segment">
+              <div align="left">
+                <h3>Daily Health Check-In</h3>
+                <p>Help keep our campus safe by completing your daily health check-in!</p>
+                <List ordered>
+                  <List.Item>
+                    Check your symptoms.
+                  </List.Item>
+                  <List.Item>
+                    Keep track of your symptoms every day.
+                  </List.Item>
+                </List>
+                <Button className="ui color button" primary as={NavLink} icon labelPosition='left' exact to='/update'>
+                  <Icon name="heart outline"/>
+                  Check Your Symptoms
+                </Button>
+                <Button secondary as={NavLink} icon labelPosition='left' exact to='/list'>
+                  <Icon name="clipboard list"/>
+                  Previous Check-ins
+                </Button>
+              </div>
+            </Segment>
+            <Header as="h2" textAlign="center">Vaccination card</Header>
+            <Segment>
+              <p>No Vaccination card information submitted yet.</p>
+              <p>Placeholder text.</p>
+              <Button as={NavLink} exact to='/add_vf'>Submit Information</Button>
+              <Button as={NavLink} exact to='/list_vf'>View Information</Button>
+            </Segment>
+            <Header as="h2" textAlign="center">Previous Check-ins</Header>
+            <Table celled>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Date</Table.HeaderCell>
+                  <Table.HeaderCell>Condition</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {this.props.status.slice(-3).reverse().map((status) => <StatusItem key={status._id} status={status}/>)}
+              </Table.Body>
+            </Table>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
