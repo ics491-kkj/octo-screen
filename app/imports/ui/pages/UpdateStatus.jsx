@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { Redirect } from 'react-router';
 import { Status } from '../../api/status/Status';
 import { NavLink } from 'react-router-dom';
 
@@ -22,6 +23,11 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /** Renders the Page for adding a document. */
 class UpdateStatus extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false };
+  }
+
   // On submit, insert the data.
   submit(data, formRef) {
     const { condition } = data;
@@ -37,10 +43,15 @@ class UpdateStatus extends React.Component {
           formRef.reset();
         }
       });
+    this.setState({ redirect: true });
   }
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/'/>;
+    }
+
     let fRef = null;
     const segmentStyle = {
       margin: '50px 30px',
