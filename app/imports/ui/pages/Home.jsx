@@ -52,6 +52,7 @@ class Home extends React.Component {
       textAlign: 'left',
       paddingBottom: '20px',
     };
+    console.log(typeof (segmentStyle));
     return (
       <div id='background-image'>
         <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
