@@ -17,11 +17,13 @@ class ListVaccineForm extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-      <Container>
-        <Card.Group>
-          {this.props.vaccineforms.map((vaccineform) => <VaccineFormItem key={vaccineform._id} vaccineform={vaccineform} />)}
-        </Card.Group>
-      </Container>
+      <div id='background-image'>
+        <Container>
+          <Card.Group>
+            {this.props.vaccineforms.map((vaccineform) => <VaccineFormItem key={vaccineform._id} vaccineform={vaccineform} />)}
+          </Card.Group>
+        </Container>
+      </div>
     );
   }
 }
