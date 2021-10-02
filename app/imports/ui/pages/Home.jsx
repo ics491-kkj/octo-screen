@@ -1,14 +1,40 @@
 import React from 'react';
-import { Grid, Segment, Button, Header, Table, Loader, List, Icon } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Grid, Header, Loader } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Status } from '../../api/status/Status';
-import StatusItem from '../components/StatusItem';
+import CheckInSegment from '../components/CheckInSegment';
+import VaccCardSegment from '../components/VaccCardSegment';
+import PreviousCheckIns from '../components/PreviousCheckIns';
 
 /** A simple static component to render some text for the home page. */
 class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { checkedInToday: false };
+  }
+
+  // Check if the user has done a check-in today
+  dailyStatusCheck = () => {
+    // return false if there is no history of check-ins
+    if (this.props.status.length === 0) {
+      return false;
+    }
+
+    // get the date of the latest check-in from the user and compare it with the date of today
+    const today = new Date();
+    const lastDate = this.props.status.reverse()[0].date;
+
+    if (today.getDate() === lastDate.getDate() &&
+        today.getMonth() === lastDate.getMonth() &&
+        today.getFullYear() === lastDate.getFullYear()) {
+      return true;
+    }
+    return false;
+
+  }
 
   // If the subscription has been received, then render the page. Otherwise, let them know it's loading
   render() {
@@ -30,55 +56,10 @@ class Home extends React.Component {
       <div id='background-image'>
         <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
           <Grid.Column width={8}>
-            <Segment style={segmentStyle} id="landing-segment">
-              <div style={textStyle}>
-                <h3>Daily Health Check-In</h3>
-                <p>Help keep our campus safe by completing your daily health check-in!</p>
-                <List ordered>
-                  <List.Item>
-                    Check your symptoms.
-                  </List.Item>
-                  <List.Item>
-                    Keep track of your symptoms every day.
-                  </List.Item>
-                </List>
-              </div>
-              <Button className="ui color button" primary as={NavLink} icon labelPosition='left' exact to='/update'>
-                <Icon name="heart outline"/>
-                  Check Your Symptoms
-              </Button>
-              <Button secondary as={NavLink} icon labelPosition='left' exact to='/list'>
-                <Icon name="clipboard list"/>
-                  Previous Check-ins
-              </Button>
-            </Segment>
-            <Segment style={segmentStyle} id="landing-segment">
-              <div style={textStyle}>
-                <h3>Vaccination Card</h3>
-                <h4>No Vaccination card information submitted yet.</h4>
-                <p>Placeholder text.</p>
-              </div>
-              <Button className="ui color button" primary as={NavLink} icon labelPosition='left ' exact to='/add_vf'>
-                <Icon name="address card outline"/>
-                Submit Information
-              </Button>
-              <Button secondary as={NavLink} icon labelPosition='left' exact to='/list_vf'>
-                <Icon name="info circle"/>
-                View Information
-              </Button>
-            </Segment>
+            <CheckInSegment dayCheck={this.dailyStatusCheck()} segmentStyle={segmentStyle} textStyle={textStyle}/>
+            <VaccCardSegment segmentStyle={segmentStyle} textStyle={textStyle}/>
             <Header as="h2" textAlign="left" style={{ color: 'white' }}>Previous Check-ins</Header>
-            <Table celled>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Date</Table.HeaderCell>
-                  <Table.HeaderCell>Condition</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {this.props.status.slice(-3).reverse().map((status) => <StatusItem key={status._id} status={status}/>)}
-              </Table.Body>
-            </Table>
+            <PreviousCheckIns status={this.props.status} />
           </Grid.Column>
         </Grid>
       </div>
