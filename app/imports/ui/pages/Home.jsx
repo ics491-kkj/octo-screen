@@ -4,13 +4,38 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Status } from '../../api/status/Status';
-import StatusCard from '../components/StatusCard';
 import CheckInSegment from '../components/CheckInSegment';
 import VaccCardSegment from '../components/VaccCardSegment';
 import PreviousCheckIns from '../components/PreviousCheckIns';
 
 /** A simple static component to render some text for the home page. */
 class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { checkedInToday: false };
+  }
+
+  // Check if the user has done a check-in today
+  dailyStatusCheck = () => {
+    // return false if there is no history of check-ins
+    if (this.props.status.length === 0) {
+      return false;
+    }
+
+    // get the date of the latest check-in from the user and compare it with the date of today
+    const today = new Date();
+    const lastDate = this.props.status.reverse()[0].date;
+    console.log(lastDate);
+
+    if (today.getDate() === lastDate.getDate() &&
+        today.getMonth() === lastDate.getMonth() &&
+        today.getFullYear() === lastDate.getFullYear()) {
+      return true;
+    }
+    return false;
+
+  }
 
   // If the subscription has been received, then render the page. Otherwise, let them know it's loading
   render() {
@@ -22,9 +47,8 @@ class Home extends React.Component {
     return (
       <Grid id='home-page' verticalAlign='middle' textAlign='center' container>
         <Grid.Column width={8}>
-          <StatusCard />
           <Header as="h2" textAlign="center">Health Check-in</Header>
-          <CheckInSegment />
+          <CheckInSegment dayCheck={this.dailyStatusCheck()}/>
           <Header as="h2" textAlign="center">Vaccination card</Header>
           <VaccCardSegment />
           <Header as="h2" textAlign="center">Previous Check-ins</Header>
