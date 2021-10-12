@@ -6,10 +6,9 @@ import { withRouter } from 'react-router-dom';
 /** Renders a single row in the List VaccineForm table. See pages/ListVaccineForm.jsx. */
 class VaccineFormItem extends React.Component {
   render() {
-    const vaccCard = 'images/vacc-card.jpg';
     return (
       <Card centered>
-        <Card.Content>
+        <Card.Content textAlign='left'>
           <Card.Header> Vaccine Form </Card.Header>
           <Card.Description>Last Name</Card.Description>
           <Card.Meta>{this.props.vaccineform.lastname}</Card.Meta>
@@ -39,8 +38,6 @@ class VaccineFormItem extends React.Component {
           <Card.Meta>{this.props.vaccineform.date2}</Card.Meta>
           <Card.Description>(2)Site</Card.Description>
           <Card.Meta>{this.props.vaccineform.site2}</Card.Meta>
-          <Card.Description>Image</Card.Description>
-          <Image src='images/vacc-card.jpg' size='small'/>
         </Card.Content>
       </Card>
     );
