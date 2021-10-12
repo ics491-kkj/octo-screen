@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Loader, Card } from 'semantic-ui-react';
+import { Container, Loader, Card, Image, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { VaccineForms } from '../../api/vaccineform/Vaccineform';
@@ -22,6 +22,9 @@ class ListVaccineForm extends React.Component {
           <Card.Group>
             {this.props.vaccineforms.map((vaccineform) => <VaccineFormItem key={vaccineform._id} vaccineform={vaccineform} />)}
           </Card.Group>
+          <Segment>
+            <Image src='images/vacc-card.jpg' />
+          </Segment>
         </Container>
       </div>
     );

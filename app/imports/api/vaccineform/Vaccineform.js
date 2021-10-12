@@ -18,12 +18,12 @@ class VaccineFormsCollection {
       middlein: { type: String, optional: true },
       dob: String,
       pnum: { type: String, optional: true },
-      
+
       vname1: String,
       lotnum1: String,
       date1: String,
       site1: String,
-      
+
       vname2: String,
       lotnum2: String,
       date2: String,
